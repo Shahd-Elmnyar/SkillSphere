@@ -7,9 +7,9 @@
 		<!-- Hero-area -->
 		<div class="hero-area section">
 
-			<!-- Backgound Image -->
+			<!-- Background Image -->
 			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/blog-post-background.jpg)"></div>
-			<!-- /Backgound Image -->
+			<!-- /Background Image -->
 
 			<div class="container">
 				<div class="row">

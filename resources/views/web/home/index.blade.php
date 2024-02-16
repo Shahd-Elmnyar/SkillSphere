@@ -17,9 +17,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8">
-                                <h1 class="white-text">SkillsHub Free Online Skill Assessment</h1>
-                                <p class="lead white-text">Libris vivendo eloquentiam ex ius, nec id splendide abhorreant, eu pro alii error homero.</p>
-                                <a class="main-button icon-button" href="#">Get Started!</a>
+                                <h1 class="white-text">@lang('web.heroTitle')</h1>
+                                <p class="lead white-text">@lang('web.heroDesc')</p>
+                                <a class="main-button icon-button" href="#">@lang('web.getStartedBtn')</a>
                             </div>
                         </div>
                     </div>
@@ -37,8 +37,8 @@
                     <!-- row -->
                     <div class="row">
                         <div class="section-header text-center">
-                            <h2>Popular Exams</h2>
-                            <p class="lead">Libris vivendo eloquentiam ex ius, nec id splendide abhorreant.</p>
+                            <h2>@lang('web.popularExamTitle')</h2>
+                            <p class="lead">@lang('web.popularExamDesc')</p>
                         </div>
                     </div>
                     <!-- /row -->
@@ -198,9 +198,9 @@
             <!-- Contact CTA -->
             <div id="contact-cta" class="section">
 
-                <!-- Backgound Image -->
+                <!-- Background Image -->
                 <div class="bg-image bg-parallax overlay" style="background-image:url({{asset('web/img/cta.jpg')}})"></div>
-                <!-- Backgound Image -->
+                <!-- Background Image -->
 
                 <!-- container -->
                 <div class="container">
@@ -209,9 +209,9 @@
                     <div class="row">
 
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h2 class="white-text">Contact Us</h2>
-                            <p class="lead white-text">Libris vivendo eloquentiam ex ius, nec id splendide abhorreant.</p>
-                            <a class="main-button icon-button" href="contact.html">Contact Us Now</a>
+                            <h2 class="white-text">@lang('web.contact')</h2>
+                            <p class="lead white-text">@lang('web.contactDesc')</p>
+                            <a class="main-button icon-button" href="contact.html">@lang('web.contactBtn')</a>
                         </div>
 
                     </div>

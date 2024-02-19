@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Exam extends Model
 {
@@ -18,5 +19,13 @@ class Exam extends Model
     }
     public function users (){
         return $this->BelongsToMany(User::class);
+    }
+    public function name($lang = null) {
+        $lang =$lang?? App::getLocale();
+        return json_decode($this->name)->$lang;
+    }
+    public function description($lang = null) {
+        $lang =$lang?? App::getLocale();
+        return json_decode($this->description)->$lang;
     }
 }

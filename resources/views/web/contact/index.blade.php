@@ -40,13 +40,14 @@
 					<div class="col-md-6">
 						<div class="contact-form">
 							<h4>{{__('web.SendAMessage')}}</h4>
-							<form method="POST" action="{{url('contact.message.send')}}">
+                            @include('web.inc.message')
+							<form method="POST" action="{{url('contact/message/send')}}">
 								@csrf
 								<input class="input" type="text" name="name" placeholder="{{__('web.name')}}">
 								<input class="input" type="email" name="email" placeholder="{{__('web.email')}}">
 								<input class="input" type="text" name="subject" placeholder="{{__('web.subject')}}">
-								<textarea class="input" name="message" placeholder="{{__('web.EnterYourMessage')}}"></textarea>
-								<button class="main-button icon-button pull-right">{{__('web.Send')}}</button>
+								<textarea class="input" name="body" placeholder="{{__('web.EnterYourMessage')}}"></textarea>
+								<button type= "submit" class="main-button icon-button pull-right">{{__('web.Send')}}</button>
 							</form>
 						</div>
 					</div>

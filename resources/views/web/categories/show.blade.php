@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1 text-center">
                 <ul class="hero-area-tree">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">{{__('web.home')}}</a></li>
                     <li>{{$category->name()}}</li>
                 </ul>
                 <h1 class="white-text">{{$category->name()}}</h1>
@@ -46,11 +46,11 @@
     <div class="col-md-4">
         <div class="single-blog">
             <div class="blog-img">
-                <a href="skill.html">
+                <a href="{{url("skills/show/{$skill->id}")}}">
                     <img src="{{ asset("uploads/$skill->img") }}" alt="">
                 </a>
             </div>
-            <h4><a href="skill.html">{{ $skill->name() }}</a></h4>
+            <h4><a href="{{url("skills/show/{$skill->id}")}}">{{ $skill->name() }}</a></h4>
             <div class="blog-meta">
                 <!-- 18 Oct, 2017 -->
                 <span>{{Carbon\Carbon::parse($skill->created_at)->format("d M, Y")}}</span>
@@ -70,21 +70,7 @@
 
                 <!-- row -->
                 <div class="row">
-
-                    <!-- pagination -->
-                    <div class="col-md-12">
-                        <div class="post-pagination">
-                            <a href="#" class="pagination-back pull-left">Back</a>
-                            <ul class="pages">
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                            </ul>
-                            <a href="#" class="pagination-next pull-right">Next</a>
-                        </div>
-                    </div>
-                    <!-- pagination -->
+                    {{$skills->links("web.inc.paginator")}}
 
                 </div>
                 <!-- /row -->

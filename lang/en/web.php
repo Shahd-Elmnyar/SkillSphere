@@ -15,4 +15,17 @@ return[
     'moreExamBtn'=>'More Exams',
     'contactDesc'=>'keep in touch with us',
     'contactBtn'=>'Contact Us Now',
+
+    'back'=>'Back',
+    'next'=>'Next',
+    'StartExamBtn'=>'Start Exam',
+
+    'SendAMessage' =>'Send A Message',
+    'Send' =>'Send',
+    'contactInformation' =>'Contact Information',
+    'name' => 'Name',
+    'email'=>'Email',
+    'subject' =>'Subject',
+    'EnterYourMessage'=>'Enter Your Message',
+
 ];

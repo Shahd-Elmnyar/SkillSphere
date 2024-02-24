@@ -5,19 +5,19 @@
                 </form>
                 <ul class="main-menu nav navbar-nav navbar-right">
 
-                <li><a href="index.html">@lang('web.home')</a></li>
+                <li><a href="{{url('/')}}">@lang('web.home')</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@lang('web.categories') <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             @foreach($categories as $category)
 
-                            <li><a href="{{url('categories/show/{$category->id}')}}">
+                            <li><a href="{{url('categories/show/'.$category->id)}}">
                                     {{$category->name()}}
                                 </a></li>
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="contact.html">{{__('web.contact')}}</a></li>
+                    <li><a href="{{url('contact')}}">{{__('web.contact')}}</a></li>
                     @guest
                     <li><a href="{{url('login')}}">{{__('web.sign in')}}</a></li>
                     <li><a href="{{url('register')}}">{{__('web.sign up')}}</a></li>

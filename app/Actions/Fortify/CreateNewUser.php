@@ -31,9 +31,9 @@ class CreateNewUser implements CreatesNewUsers
                 'max:255',
                 Rule::unique(User::class),
             ],
-            // 'password' => $this->passwordRules(),
+            'password' => $this->passwordRules(),
         ])->validate();
-        
+
         $studentRole = Role::where ('name','student')->first();
         return User::create([
             'name' => $input['name'],

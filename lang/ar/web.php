@@ -33,4 +33,11 @@ return[
     'logout'=>'تسجيل خروج',
     'signInDesc'=>'سجل دخولك لبدء الامتحان',
     'remember'=>'تذكرني',
+    'forgotPassword'=>'نسيت كلمة المرور',
+    'login'=>'تسجيل دخول',
+    'dontHaveAccount'=>'ليس لديك حساب',
+    'verifyEmail'=>'تأكيد البريد الالكتروني',
+    'resendEmail'=>'اعادة ارسال البريد الالكتروني',
+    'resetPassword'=>'اعادة تعيين كلمة المرور',
+    'submit'=>'ارسال',
 ];

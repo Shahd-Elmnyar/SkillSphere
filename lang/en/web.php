@@ -34,6 +34,14 @@ return[
     'logout'=>'Logout',
     'signInDesc'=>'Sign In to start exam',
     'remember'=>'Remember Me',
+    'forgotPassword'=>'Forgot Password',
+    'login'=>'Login',
+    'dontHaveAccount'=>'Don\'t Have Account',
+    'verifyEmail'=>'Verify Email',
+    'resendEmail'=>'Resend Email',
+    'resetPassword'=>'Reset Password',
+    'forgotPassword'=>'Forgot Password',
+    'submit'=>'Submit',
 
 
 

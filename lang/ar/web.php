@@ -26,4 +26,11 @@ return[
     'email' =>'البريد الالكتروني',
     'subject' =>'الموضوع',
     'EnterYourMessage'=>'ادخل رسالتك',
+    'signUpDesc'=>'سجل الان واختبر مهاراتك',
+    'signUpBtn'=>'سجل ',
+    'confirmPassword'=>'تأكيد كلمة المرور',
+    'password'=>'كلمة المرور',
+    'logout'=>'تسجيل خروج',
+    'signInDesc'=>'سجل دخولك لبدء الامتحان',
+    'remember'=>'تذكرني',
 ];

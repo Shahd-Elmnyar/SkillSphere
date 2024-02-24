@@ -26,7 +26,7 @@ Route::middleware('lang')->group(function () {
     Route::get('/exams/show/{id}', [ExamController::class, 'show']);
     Route::get('/exams/questions/{id}', [ExamController::class, 'questions']);
     Route::get('/contact', [ContactController::class, 'index']);
-    Route::post('/contact/message/send', [ContactController::class, 'send']);
+    Route::post('/contact/message/send', [ContactController::class, 'send ']);
 
 });
 

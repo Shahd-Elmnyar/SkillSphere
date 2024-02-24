@@ -1,5 +1,8 @@
 <div>
 <nav id="nav">
+                <form id="logout-form" method="POST" action="{{url('logout')}}" style="display: none;">
+                        @csrf
+                </form>
                 <ul class="main-menu nav navbar-nav navbar-right">
 
                 <li><a href="index.html">@lang('web.home')</a></li>
@@ -14,9 +17,15 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="contact.html">@lang('web.contact')</a></li>
-                    <li><a href="login.html">@lang('web.sign in')</a></li>
-                    <li><a href="register.html">@lang('web.sign up')</a></li>
+                    <li><a href="contact.html">{{__('web.contact')}}</a></li>
+                    @guest
+                    <li><a href="{{url('login')}}">{{__('web.sign in')}}</a></li>
+                    <li><a href="{{url('register')}}">{{__('web.sign up')}}</a></li>
+                    @endguest
+                    @auth
+                    <!-- <input type="submit" value="{{__('web.logout')}}"> -->
+                    <li><a id="logout-link" href="#">{{__('web.logout')}}</a></li>
+                    @endauth
                     @if(App::getLocale()=='ar')
                     <li><a href="{{url('lang/set/en')}}">En</a></li>
                     @else

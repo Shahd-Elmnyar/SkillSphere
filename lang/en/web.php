@@ -27,5 +27,14 @@ return[
     'email'=>'Email',
     'subject' =>'Subject',
     'EnterYourMessage'=>'Enter Your Message',
+    'signUpDesc'=>'Sign Up Now and Test Your Skills',
+    'signUpBtn'=>'Sign Up',
+    'password'=>'Password',
+    'confirmPassword'=>'Confirm Password',
+    'logout'=>'Logout',
+    'signInDesc'=>'Sign In to start exam',
+    'remember'=>'Remember Me',
+
+
 
 ];

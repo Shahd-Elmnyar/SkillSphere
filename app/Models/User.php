@@ -43,10 +43,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function role (){
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
-    public function exams (){
-        return $this->BelongsToMany(Exam::class);
+    public function exams()
+    {
+        return $this->BelongsToMany(Exam::class)
+            ->withPivot('score', 'time_min', 'status')
+            ->withTimestamps();
     }
 }

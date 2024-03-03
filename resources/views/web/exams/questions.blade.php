@@ -2,12 +2,16 @@
 @section('title')
 Questions - {{$exam->name()}}
 @endsection
+@section('styles')
+<link href="{{asset('web/css/TimeCircles.css')}}" rel="stylesheet">
+@endsection
 @section('content')
 
 <!-- Hero-area -->
 <div class="hero-area section">
     <!-- Background Image -->
-    <div class="bg-image bg-parallax overlay" style="background-image:url({{ asset('uploads/'. $exam->img) }})"></div>
+    <div class="bg-image bg-parallax overlay" style="background-image:url({{ asset('uploads/'. $exam->img) }}) ">
+    </div>
     <!-- /Background Image -->
 
     <div class="container">
@@ -38,6 +42,7 @@ Questions - {{$exam->name()}}
         <div class="row">
             <!-- main blog -->
             <div id="main" class="col-md-9">
+                <form id="exam-submit-form" method="POST" action="{{url("exams/submit/{$exam->id}")}}">@csrf</form>
                 <!-- blog post -->
                 <div class="blog-post mb-5">
                     <p>
@@ -49,7 +54,7 @@ Questions - {{$exam->name()}}
                         <div class="panel-body">
                             @for ($i=1; $i <= 4; $i++) <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                    <input type="radio" name="answers[{{$question->id}}]" id="optionsRadios1" value="{{$i}}" form="exam-submit-form">
                                     {{$question->{'option_'.$i} }}
                                 </label>
                         </div>
@@ -60,8 +65,8 @@ Questions - {{$exam->name()}}
                 </p>
             </div>
             <div>
-                    <button class="main-button icon-button pull-left">Submit</button>
-                    <button class="main-button icon-button btn-danger pull-left ml-sm">Cancel</button>
+                <button type="submit" form="exam-submit-form" class="main-button icon-button pull-left">Submit</button>
+                <button class="main-button icon-button btn-danger pull-left ml-sm">Cancel</button>
             </div>
             <!-- /blog post -->
         </div>
@@ -84,6 +89,7 @@ Questions - {{$exam->name()}}
                 </li>
             </ul>
             <!-- /exam details widget -->
+            <div class="duration-countdown" data-timer="{{$exam->duration_mins*60}}"></div>
         </div>
         <!-- /aside blog -->
 
@@ -96,4 +102,21 @@ Questions - {{$exam->name()}}
 </div>
 <!-- /Blog -->
 
+@endsection
+@section('scripts')
+<script type="text/javascript" src="{{asset('web/js/TimeCircles.js')}}"></script>
+<script>
+    $(".duration-countdown").TimeCircles({
+        time: {
+            Days: {
+                show: false,
+            }
+        },
+        count_past_zero: false,
+    }).addListener(function(unit,value,total){
+        if(total <= 0){
+            $('exam-submit-form').submit()
+        }
+    });
+</script>
 @endsection

@@ -42,7 +42,7 @@ exams - {{$exam->name()}}
 
             <!-- main blog -->
             <div id="main" class="col-md-9">
-
+                @include('web.inc.messages')
                 <!-- blog post -->
                 <div class="blog-post mb-5">
                     <p>
@@ -52,8 +52,16 @@ exams - {{$exam->name()}}
                 <!-- /blog post -->
 
                 <div>
-                    <a href="{{url("exams/questions/{$exam->id}")}}" class="main-button icon-button pull-left">{{__('web.StartExamBtn')}}</a>
-                </div>
+                    @auth
+                    @if(Auth::user()->role()->name() == 'student')
+                        <form action="{{url("exams/start/{$exam->id}")}}" method="post">
+                        @csrf
+                        <button type="submit"  class="main-button icon-button pull-left">{{__('web.StartExamBtn')}}</button>
+
+                        </form>
+                    @endif
+                    @endauth
+                    </div>
             </div>
             <!-- /main blog -->
 

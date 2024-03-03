@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('exam_id')->constrained();
-            $table->float('score',5,2);
-            $table->smallInteger('time_min');
-            $table->enum('status',['opened','closed']);
+            $table->float('score', 5, 2)->nullable()->default(0);
+            $table->smallInteger('time_min')->nullable();
+            $table->enum('status', ['opened', 'closed'])->default('closed');
             $table->timestamps();
         });
     }

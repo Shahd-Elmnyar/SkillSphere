@@ -42,6 +42,8 @@ return[
     'resetPassword'=>'Reset Password',
     'forgotPassword'=>'Forgot Password',
     'submit'=>'Submit',
+    'profile'=>'Profile',
+    'dashboard'=>'Dashboard',
 
 
 

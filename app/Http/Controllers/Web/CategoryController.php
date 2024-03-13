@@ -15,8 +15,8 @@ class CategoryController extends Controller
     {
 
         $data['category'] = Categorie::findOrFail($id);
-        $data['all_categories']= Categorie::select('id','name')->get();
-        $data['skills']= $data['category']->skills()->paginate(6);
+        $data['all_categories']= Categorie::select('id','name')->active()->get();
+        $data['skills']= $data['category']->skills()->active()->paginate(6);
         // dd($data['skills']);
         return view('web.categories.show')->with($data);
     }

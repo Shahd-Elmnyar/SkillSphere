@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsStudent
+class CanEnterExam
 {
     /**
      * Handle an incoming request.
@@ -17,9 +16,12 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role_->name == 'student'){
-            return redirect(url('/'));
+        $examId = $request->route()->parameter('id');
+        $user =Auth::user();
+        $pivotRow = $user->exams()->where('exam_id',$examId)->first();
+        if ($pivotRow!==null and $pivotRow->pivot->status =='closed'){
+            return $next($request);
         }
-        return $next($request);
+        return redirect(url('/'));
     }
 }

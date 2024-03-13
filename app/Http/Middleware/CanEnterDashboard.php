@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsStudent
+class CanEnterDashboard
 {
     /**
      * Handle an incoming request.
@@ -17,9 +16,10 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role_->name == 'student'){
-            return redirect(url('/'));
+        $role = Auth::user()->role->name;
+        if ($role == 'admin' or $role == 'superadmin') {
+            return $next($request);
         }
-        return $next($request);
+        return redirect(url('/'));
     }
 }

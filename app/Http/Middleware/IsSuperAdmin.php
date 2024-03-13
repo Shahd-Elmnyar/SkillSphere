@@ -17,8 +17,7 @@ class IsSuperAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $superAdmin = Role::where('name','superadmin')->first();
-        if(Auth::user()->role_id !== $superAdmin->id){
+        if(Auth::user()->role_->name == 'superadmin'){
             return redirect(url('/'));
         }
         return $next($request);

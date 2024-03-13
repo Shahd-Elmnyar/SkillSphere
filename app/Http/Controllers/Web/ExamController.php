@@ -18,25 +18,41 @@ class ExamController extends Controller
     public function show($id)
     {
         $data['exam'] = Exam::findOrFail($id);
-        // $data['status']
+        $user = Auth::user();
+        $data['canEnterExam']=true;
+        if ($user!==null){
+            $pivotRow=$user->exams()->where('exam_id',$id)->active()->first();
+            if ($pivotRow !== null and $pivotRow->pivot->status =='closed'){
+                $data['canEnterExam']=false;
+            }
+        }
+
         return view('web.exams.show')->with($data);
     }
-    public function questions($id)
+    public function questions($examId , Request $request)
     {
-        $data['exam'] = Exam::findOrFail($id);
+        if (session('previous')!=="start/$examId"){
+            return redirect(url("exams/show/$examId"));
+        }
+        $data['exam'] = Exam::findOrFail($examId);
+        $request->session()->flash('previous',"questions/$examId");
         return view('web.exams.questions')->with($data);
     }
-    public function start($examId)
+    public function start($examId,Request $request)
     {
 
         $user = Auth::user();
         // dd($user->exams());
         $user->exams()->attach($examId);
+        $request->session()->flash('previous',"start/$examId");
         return redirect(url("exams/questions/{$examId}"));
     }
 
     public function submit($examId, Request $request)
     {
+        if (session('previous')!=="questions/$examId"){
+            return redirect(url("exams/show/$examId"));
+        }
 
         $request->validate([
 
@@ -61,9 +77,9 @@ class ExamController extends Controller
 
         //calculate time in Grinch time
         $user = Auth::user();
-        $pivotRow = $user->exams()->where('exam_id', $examId)->first();
+        $pivotRow = $user->exams()->where('exam_id', $examId)->active()->first();
         $startTime = $pivotRow->pivot->created_at;
-        $submitTime = Carbon::now()->addHours(9); // Grinch time is +9 hours from original
+        $submitTime = Carbon::now();
         $timeMins = $submitTime->diffInMinutes($startTime);
         if ($timeMins > $pivotRow->duration_mins ){
             $score = 0;
@@ -74,7 +90,7 @@ class ExamController extends Controller
             'score' => $score,
             'time_min' =>$timeMins ,
         ]);
-        $request->session()->flash('success',"you finished examn successfully with score $score");
+        $request->session()->flash('success',"you finished exam successfully with score $score");
         return redirect(url("exams/show/$examId"));
     }
 }

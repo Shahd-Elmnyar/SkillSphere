@@ -23,7 +23,7 @@ class Navbar extends Component
     public function render(): View|Closure|string
     {
 
-            $data['categories'] = Categorie::select('id', 'name')->get();
+            $data['categories'] = Categorie::select('id', 'name')->active()->get();
             return view('components.navbar')->with($data);
     }
 }

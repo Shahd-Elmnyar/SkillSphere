@@ -112,7 +112,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            @include('admin.inc.errors');
+            @include('admin.inc.errors')
                 <form method="POST" action="{{url("dashboard/categories/store")}}" id="add-form">
                     @csrf
                     <div class="row">
@@ -152,7 +152,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @include('admin.inc.errors');
+                @include('admin.inc.errors')
                 <form method="POST" action="{{url("dashboard/categories/update")}}" id="edit-form">
                     @csrf
                     <input type="hidden" name="id" id="edit-form-id">

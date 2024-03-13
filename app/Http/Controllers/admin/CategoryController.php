@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $request->validate([
             'id' => 'required|exists:categories,id',
             'name_en' => 'required|string|max:50',
-            ' ' => 'required|string|max:50',
+            'name_ar' => 'required|string|max:50',
         ]);
         //  dd($request->id);
         Categorie::findOrFail($request->id)->update([

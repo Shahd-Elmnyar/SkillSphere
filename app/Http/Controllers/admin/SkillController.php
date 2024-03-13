@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Categorie;
+use Exception;
 use App\Models\Skill;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SkillController extends Controller
 {
@@ -51,7 +52,7 @@ class SkillController extends Controller
         $request->validate([
             'id' => 'required|exists:skills,id',
             'name_en' => 'required|string|max:50',
-            ' ' => 'required|string|max:50',
+            'name_ar' => 'required|string|max:50',
         ]);
         //  dd($request->id);
         Skill::findOrFail($request->id)->update([

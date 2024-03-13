@@ -62,7 +62,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified', 'can-enter-dashboard
     //skills
     Route::get('/skills', [AdminSkillController::class, 'index']);
     Route::post('/skills/store', [AdminSkillController::class, 'store']);
-    Route::get('/skills/delete/{categorie}', [AdminSkillController::class, 'delete']);
+    Route::get('/skills/delete/{skill}', [AdminSkillController::class, 'delete']);
     Route::post('/skills/update', [AdminSkillController::class, 'update']);
-    Route::get('/skills/toggle/{categorie}', [AdminSkillController::class, 'toggle']);
+    Route::get('/skills/toggle/{skill}', [AdminSkillController::class, 'toggle']);
 });

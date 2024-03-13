@@ -117,7 +117,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
+            @include('admin.inc.errors')
                 <form method="POST" action="{{url("dashboard/skills/store")}}" id="add-form" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -180,7 +180,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            @include('admin.inc.errors');
+            @include('admin.inc.errors')
 
                 <form method="POST" action="{{url("dashboard/skills/update")}}" id="edit-form">
                     @csrf

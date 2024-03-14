@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">skills</h1>
+                    <h1 class="m-0 text-dark">exams</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">skills</li>
+                        <li class="breadcrumb-item active">exams</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,7 +27,7 @@
                     @include('admin.inc.message')
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">All skills</h3>
+                            <h3 class="card-title">All Exams</h3>
                             <div class="card-tools">
                                 <!-- <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search" spellcheck="false" data-ms-editor="true">
@@ -37,9 +37,9 @@
                                     </button>
                                 </div>
                             </div>-->
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-modal">
+                                <a href="{{url('dashboard/exams/create')}}" class="btn btn-sm btn-primary">
                                     Add new
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <div class="card-body table-responsive p-0">
@@ -50,41 +50,50 @@
                                         <th>Name(en)</th>
                                         <th>Name(ar)</th>
                                         <th>Image</th>
-                                        <th>category</th>
+                                        <th>Skill</th>
+                                        <th>Questions number</th>
                                         <th>Active</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($skills as $skill)
+                                    @foreach($exams as $exam)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$skill->name('en')}}</td>
-                                        <td>{{$skill->name('ar')}}</td>
+                                        <td>{{$exam->name('en')}}</td>
+                                        <td>{{$exam->name('ar')}}</td>
                                         <td>
-                                            <img src= "{{asset("uploads/$skill->img" )}}" height="50px" alt=""></td>
-                                        <td>{{$skill->categorie->name('en')}}</td>
+                                            <img src="{{asset("uploads/$exam->img" )}}" height="50px" alt="">
+                                        </td>
+                                        <td>{{$exam->skill->name('en')}}</td>
+                                        <td>{{$exam->questions_number}}</td>
                                         <td>
-                                            @if($skill->active)
+                                            @if($exam->active)
                                             <span class="badge bg-success">Yes</span>
                                             @else
                                             <span class="badge bg-danger">No</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <button type="button" href="{{url("dashboard/skills/update")}}" class="btn btn-sm btn-info edit-btn" data-id="{{$skill->id}}" data-name-en="{{$skill->name('en')}}" data-name-ar="{{$skill->name('ar')}}" data-img="{{$skill->img}}" data-categorie-id="{{$skill->categorie_id}}" data-toggle="modal" data-target="#edit-modal">
+                                            <a href="{{url("dashboard/exams/show/$exam->id")}}" class="btn btn-sm btn-primary ">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{url("dashboard/exams/show/$exam->id/questions")}}" class="btn btn-sm btn-success ">
+                                                <i class="fas fa-question"></i>
+                                            </a>
+                                            <a href="{{url("dashboard/exams/edit/$exam->id")}}" class="btn btn-sm btn-info ">
                                                 <i class="fas fa-edit"></i>
-                                            </button>
-                                            <a href="{{url("dashboard/skills/delete/$skill->id")}}" class="btn btn-sm btn-danger">
+                                            </a>
+                                            <a href="{{url("dashboard/exams/delete/$exam->id")}}" class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </a>
 
-                                            @if($skill->active)
-                                            <a href="{{url("dashboard/skills/toggle/$skill->id")}}" class="btn btn-sm btn-secondary">
+                                            @if($exam->active)
+                                            <a href="{{url("dashboard/exams/toggle/$exam->id")}}" class="btn btn-sm btn-secondary">
                                                 <i class="fas fa-toggle-on"></i>
                                             </a>
                                             @else
-                                            <a href="{{url("dashboard/skills/toggle/$skill->id")}}" class="btn btn-sm btn-secondary">
+                                            <a href="{{url("dashboard/exams/toggle/$exam->id")}}" class="btn btn-sm btn-secondary">
                                                 <i class="fas fa-toggle-off"></i>
                                             </a>
                                             @endif
@@ -94,7 +103,7 @@
                                 </tbody>
                             </table>
                             <div class="d-flex my-3 justify-content-center">
-                                {{$skills->links()}}
+                                {{$exams->links()}}
                             </div>
                         </div>
 
@@ -117,8 +126,8 @@
                 </button>
             </div>
             <div class="modal-body">
-            @include('admin.inc.errors')
-                <form method="POST" action="{{url("dashboard/skills/store")}}" id="add-form" enctype="multipart/form-data">
+                @include('admin.inc.errors')
+                <form method="POST" action="{{url("dashboard/exams/store")}}" id="add-form">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -131,29 +140,6 @@
                             <div class="form-group">
                                 <label>Name(ar)</label>
                                 <input type="text" name="name_ar" class="form-control" placeholder="Enter name in Arabic">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select class="custom-select form-control"name= "categorie_id">
-                                        @foreach($categories as $category)
-                                        <option value="{{$category->id }}" >{{$category->name('en')}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Image</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="img">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,9 +166,8 @@
                 </button>
             </div>
             <div class="modal-body">
-            @include('admin.inc.errors')
-
-                <form method="POST" action="{{url("dashboard/skills/update")}}" id="edit-form">
+                @include('admin.inc.errors')
+                <form method="POST" action="{{url("dashboard/exams/update")}}" id="edit-form">
                     @csrf
                     <input type="hidden" name="id" id="edit-form-id">
                     <div class="row">
@@ -200,32 +185,6 @@
                         </div>
                     </div>
 
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select class="custom-select form-control">
-                                        @foreach($categories as $category)
-                                        <option value="{{$category->id}}" name= "category_id">{{$category->name('en')}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Image</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="img">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
 
@@ -237,21 +196,4 @@
     </div>
 </div>
 
-@endsection
-@section('scripts')
-<script>
-    $('.edit-btn').click(function() {
-        let id = $(this).attr('data-id');
-        let nameEn = $(this).attr('data-name-en');
-        let nameAr = $(this).attr('data-name-ar');
-        let img = $(this).attr('data-img');
-        let categoryId = $(this).attr('data-categorie-id');
-        console.log(nameEn, nameAr);
-        $('#edit-form-id').val(id)
-        $('#edit-form-name-en').val(nameEn)
-        $('#edit-form-name-ar').val(nameAr)
-        $('#edit-form-categorie-id').val(categoryId)
-
-    })
-</script>
 @endsection

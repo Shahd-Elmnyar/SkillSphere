@@ -3,46 +3,44 @@
 namespace App\Http\Controllers\admin;
 
 use Exception;
-use App\Models\Skill;
-use App\Models\Categorie;
+use App\Models\Exam;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SkillController extends Controller
+class ExamController extends Controller
 {
     public function index()
     {
-        $data['skills'] = Skill::orderBy('id', 'DESC')->paginate(10);
-        $data['categories'] = Categorie::select('id', 'name')->get();
-        return view('admin/skills/index')->with($data);
+        $data['exams'] = Exam::select('id','name','skill_id','img','questions_number','active')->orderBy('id', 'DESC')->paginate(10);
+        return view('admin/exams/index')->with($data);
     }
-
+    public function show(Exam $exam)
+    {
+        $data['exams'] = $exam;
+        return view('admin/exams/show')->with($data);
+    }
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'name_en' => 'required|string|max:50',
             'name_ar' => 'required|string|max:50',
-            'img'=>'required|image|max:2024',
-            'category_id' => 'required|exists:categories,id',
         ]);
-        Skill::create([
-            'name' => json_encode([
+        Exam::create([
+            'name' => json_encode(([
                 'en' => $request->name_en,
                 'ar' => $request->name_ar,
-                'categorie_id' => $request->categorie_id,
-            ]),
+            ])),
         ]);
         $request->session()->flash('msg', 'row added successfully');
         return back();
     }
-    public function delete(Skill $skill, Request $request)
+    public function delete(Exam $exam, Request $request)
     {
         try {
-            $isDeleted = $skill->delete();
+            $isDeleted = $exam->delete();
             $msg = 'row deleted successfully';
         } catch (Exception $e) {
-            $msg = 'can not delete this skill';
+            $msg = 'can not delete this exam';
         }
         $request->session()->flash('msg', $msg);
         return back();
@@ -50,12 +48,12 @@ class SkillController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:skills,id',
+            'id' => 'required|exists:exams,id',
             'name_en' => 'required|string|max:50',
             'name_ar' => 'required|string|max:50',
         ]);
         //  dd($request->id);
-        Skill::findOrFail($request->id)->update([
+        Exam::findOrFail($request->id)->update([
             'name' => json_encode(([
                 'en' => $request->name_en,
                 'ar' => $request->name_ar,
@@ -64,10 +62,10 @@ class SkillController extends Controller
         $request->session()->flash('msg', 'row updated successfully');
         return back();
     }
-    public function toggle(Skill $skill)
+    public function toggle(Exam $exam)
     {
-        $skill->update([
-            'active' => !$skill->active,
+        $exam->update([
+            'active' => !$exam->active,
         ]);
         return back();
     }

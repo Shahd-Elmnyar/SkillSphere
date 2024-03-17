@@ -35,7 +35,7 @@ class ExamController extends Controller
             return redirect(url("exams/show/$examId"));
         }
         $data['exam'] = Exam::findOrFail($examId);
-        $request->session()->flash('previous',"questions/$examId");
+        session()->flash('previous',"questions/$examId");
         return view('web.exams.questions')->with($data);
     }
     public function start($examId,Request $request)
@@ -44,7 +44,7 @@ class ExamController extends Controller
         $user = Auth::user();
         // dd($user->exams());
         $user->exams()->attach($examId);
-        $request->session()->flash('previous',"start/$examId");
+        session()->flash('previous',"start/$examId");
         return redirect(url("exams/questions/{$examId}"));
     }
 
@@ -90,7 +90,7 @@ class ExamController extends Controller
             'score' => $score,
             'time_min' =>$timeMins ,
         ]);
-        $request->session()->flash('success',"you finished exam successfully with score $score");
+        session()->flash('success',"you finished exam successfully with score $score");
         return redirect(url("exams/show/$examId"));
     }
 }

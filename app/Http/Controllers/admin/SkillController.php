@@ -33,7 +33,7 @@ class SkillController extends Controller
                 'categorie_id' => $request->categorie_id,
             ]),
         ]);
-        $request->session()->flash('msg', 'row added successfully');
+        session()->flash('msg', 'row added successfully');
         return back();
     }
     public function delete(Skill $skill, Request $request)
@@ -44,7 +44,7 @@ class SkillController extends Controller
         } catch (Exception $e) {
             $msg = 'can not delete this skill';
         }
-        $request->session()->flash('msg', $msg);
+        session()->flash('msg', $msg);
         return back();
     }
     public function update(Request $request)
@@ -61,7 +61,7 @@ class SkillController extends Controller
                 'ar' => $request->name_ar,
             ])),
         ]);
-        $request->session()->flash('msg', 'row updated successfully');
+        session()->flash('msg', 'row updated successfully');
         return back();
     }
     public function toggle(Skill $skill)

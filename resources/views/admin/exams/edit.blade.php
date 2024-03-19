@@ -26,7 +26,7 @@
                 <!-- <card body> -->
                 <div class="col-12 pb-3">
                     @include("admin.inc.errors")
-                    <form method="POST" action="{{url("dashboard/exams/update/$exams->id")}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{url("dashboard/exams/update/{$exams->id}")}}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="row">
@@ -64,13 +64,13 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Image</label>
+                                        <!-- <label>Image</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="img">
+                                                <input type="file" class="custom-file-input" name="img" value= "{{$exams->img}}">
                                                 <label class="custom-file-label">choose file</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

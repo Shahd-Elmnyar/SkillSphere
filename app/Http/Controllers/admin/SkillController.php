@@ -19,7 +19,6 @@ class SkillController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'name_en' => 'required|string|max:50',
             'name_ar' => 'required|string|max:50',

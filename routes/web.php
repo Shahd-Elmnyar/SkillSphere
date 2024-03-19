@@ -101,6 +101,6 @@ Route::prefix('dashboard')->middleware(['auth', 'verified', 'can-enter-dashboard
     Route::post('/exams/store', [AdminExamController::class, 'store']);
     Route::get('/exams/delete/{exam}', [AdminExamController::class, 'delete']);
     Route::get('/exams/edit/{exam}', [AdminExamController::class, 'edit']);
-    Route::post('/exams/update/{exams}', [AdminExamController::class, 'update']);
+    Route::post('/exams/update/{id}', [AdminExamController::class, 'update']);
     Route::get('/exams/toggle/{exam}', [AdminExamController::class, 'toggle']);
 });

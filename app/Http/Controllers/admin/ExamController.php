@@ -99,24 +99,24 @@ class ExamController extends Controller
 
     //update exam
 
-    public function update( Exam $exam ,Request $request)
+    public function update( Exam $exam ,Request $request,$id)
     {
         $request->validate([
             'name_en' => 'required|string|max:50',
             'name_ar' => 'required|string|max:50',
             'desc_en' => 'required|string',
             'desc_ar' => 'required|string',
-            'img'=>'nullable|image|max:2024',
+            // 'img'=>'nullable|image|max:2024',
             'skill_id' => 'required|exists:skills,id',
             'difficulty'=>'required|integer|min:1|max:5',
             'duration_mins'=>'required|integer|min:1',
         ]);
-        $path =$exam->img;
-        if ($request->hasFile('img')){
-            Storage::delete($path);
-            $path = Storage::putFile("exams", $request->file('img'));
-        }
-        $exam->update([
+        // $path =$exam->img;
+        // if ($request->hasFile('img')){
+        //     Storage::delete($path);
+        //     $path = Storage::putFile("exams", $request->file('img'));
+        // }
+        Exam::findOrFail($id)->update([
             'name' => json_encode([
                 'en' => $request->name_en,
                 'ar' => $request->name_ar,
@@ -125,12 +125,12 @@ class ExamController extends Controller
                 'en' => $request->desc_en,
                 'ar' => $request->desc_ar,
             ]),
-            'img'=>$path,
+            // 'img'=>$path,
             'skill_id' => $request->skill_id,
             'difficulty' => $request->difficulty,
             'duration_mins' => $request->duration_mins,
         ]);
-        session()->flash('msg', 'row updated successfully');
+        session()->flash('msg','row updated successfully');
         return redirect(url("/dashboard/exams/"));
     }
 

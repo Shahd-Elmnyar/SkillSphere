@@ -17,9 +17,9 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role_->name == 'student'){
-            return redirect(url('/'));
+        if(Auth::user()->role->name == 'student'){
+            return $next($request);
         }
-        return $next($request);
+        return redirect(url('/'));
     }
 }

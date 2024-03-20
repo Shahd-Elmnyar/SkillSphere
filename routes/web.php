@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\admin\ExamController as AdminExamController;
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\admin\SkillController as AdminSkillController;
+use App\Http\Controllers\admin\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Web\ExamController;
@@ -103,4 +104,11 @@ Route::prefix('dashboard')->middleware(['auth', 'verified', 'can-enter-dashboard
     Route::get('/exams/edit/{exam}', [AdminExamController::class, 'edit']);
     Route::post('/exams/update/{id}', [AdminExamController::class, 'update']);
     Route::get('/exams/toggle/{exam}', [AdminExamController::class, 'toggle']);
+
+    //students
+
+    Route::get('/students',[StudentController::class,'index']);
+    Route::get('/students/show-scores/{id}',[StudentController::class,'showScores']);
+    Route::get('/students/open-exam/{studentId}/{examId}',[StudentController::class,'openExam']);
+    Route::get('/students/close-exam/{studentId}/{examId}',[StudentController::class,'closeExam']);
 });

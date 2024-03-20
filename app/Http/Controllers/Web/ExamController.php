@@ -29,6 +29,8 @@ class ExamController extends Controller
 
         return view('web.exams.show')->with($data);
     }
+
+
     public function questions($examId , Request $request)
     {
         if (session('previous')!=="start/$examId"){
@@ -38,15 +40,24 @@ class ExamController extends Controller
         session()->flash('previous',"questions/$examId");
         return view('web.exams.questions')->with($data);
     }
+
+
     public function start($examId,Request $request)
     {
 
         $user = Auth::user();
         // dd($user->exams());
-        $user->exams()->attach($examId);
+        if(!$user->exams->contains($examId)){
+            $user->exams()->attach($examId);
+        }else{
+            $user->exams()->updateExistingPivot($examId,[
+                'status' => 'closed',
+            ]);
+        }
         session()->flash('previous',"start/$examId");
         return redirect(url("exams/questions/{$examId}"));
     }
+
 
     public function submit($examId, Request $request)
     {
@@ -90,7 +101,7 @@ class ExamController extends Controller
             'score' => $score,
             'time_min' =>$timeMins ,
         ]);
-        session()->flash('success',"you finished exam successfully with score $score");
+        session()->flash('success',"you finished exam successfully with score $score%");
         return redirect(url("exams/show/$examId"));
     }
 }

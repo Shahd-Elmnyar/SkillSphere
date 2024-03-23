@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\admin\ExamController as AdminExamController;
-use App\Http\Controllers\admin\HomeController as AdminHomeController;
-use App\Http\Controllers\admin\SkillController as AdminSkillController;
-use App\Http\Controllers\admin\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Web\ExamController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LangController;
 use App\Http\Controllers\Web\SkillController;
-use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\admin\StudentController;
+use App\Http\Controllers\admin\ExamController as AdminExamController;
+use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\SkillController as AdminSkillController;
+use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,4 +113,13 @@ Route::prefix('dashboard')->middleware(['auth', 'verified', 'can-enter-dashboard
     Route::get('/students/show-scores/{id}',[StudentController::class,'showScores']);
     Route::get('/students/open-exam/{studentId}/{examId}',[StudentController::class,'openExam']);
     Route::get('/students/close-exam/{studentId}/{examId}',[StudentController::class,'closeExam']);
+
+    //admin
+    Route::middleware('superAdmin')->group(function(){
+        Route::get('/admins',[AdminController::class,'index']);
+        Route::get('/admins/create',[AdminController::class,'create']);
+        Route::post('/admins/store',[AdminController::class,'store']);
+        Route::get('/admins/promote/{id}',[AdminController::class,'promote']);
+        Route::get('/admins/demote/{id}',[AdminController::class,'demote']);
+    });
 });

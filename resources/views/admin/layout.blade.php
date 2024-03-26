@@ -119,13 +119,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         @if(Auth::user()->role->name == "superadmin")
                         <li class="nav-item">
                             <a href="{{url('dashboard/admins')}}" class="nav-link">
-                            <i class="nav-icon fas fa-user-cog"></i>
+                                <i class="nav-icon fas fa-user-cog"></i>
                                 <p>
                                     admins
                                 </p>
                             </a>
                         </li>
                         @endif
+                        <li class="nav-item">
+                            <a href="{{url('dashboard/messages')}}" class="nav-link">
+                            <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Messages
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

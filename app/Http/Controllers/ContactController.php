@@ -13,13 +13,10 @@ class ContactController extends Controller
         $data['setting']=Setting::select('email','phone')->first();
         return view('web.contact.index')->with($data);
     }
+
+    //send
+
     public function send(Request $request){
-        // $request->validate([
-        //     'name'=>'required',
-        //     'email'=>'required|email',
-        //     'subject'=>'required',
-        //     'message'=>'required'
-        // ]);
         $Validator =Validator::make($request->all(),[
         'name'=>'required|string|max:255',
         'email'=>'required|email|max:255',

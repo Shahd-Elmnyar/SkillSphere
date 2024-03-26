@@ -14,7 +14,10 @@ use App\Http\Controllers\admin\ExamController as AdminExamController;
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\admin\SkillController as AdminSkillController;
 use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\admin\MessageController;
+use App\Mail\ContactResponsiveMail;
 use App\Models\Role;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +73,7 @@ Route::post('/exams/submit/{id}', [ExamController::class, 'submit'])->middleware
 
 //send message
 
-Route::post('/contact/message/send', [ContactController::class, 'send ']);
+Route::post('/contact/message/send', [ContactController::class, 'send']);
 
 // dashboard routes
 
@@ -122,4 +125,10 @@ Route::prefix('dashboard')->middleware(['auth', 'verified', 'can-enter-dashboard
         Route::get('/admins/promote/{id}',[AdminController::class,'promote']);
         Route::get('/admins/demote/{id}',[AdminController::class,'demote']);
     });
+
+    //messages
+
+    Route::get('/messages',[MessageController::class,'index']);
+    Route::get('/messages/show/{message}',[MessageController::class,'show']);
+    Route::post('/messages/response/{message}',[MessageController::class,'response']);
 });

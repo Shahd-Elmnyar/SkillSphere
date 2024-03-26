@@ -25,6 +25,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+            <div class="col-12">
                 <!-- <card body> -->
                 <div class="card">
                     <div class="card-header">
@@ -104,6 +105,7 @@
                 </div>
                 <a href="{{url("dashboard/exams/show/$exams->id/questions")}}" class="btn btn-sm btn-success">Show Question</a>
                 <a href="{{url()->previous()}}" class="btn btn-sm btn-primary">back</a>
+            </div>
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

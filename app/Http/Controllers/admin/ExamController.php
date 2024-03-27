@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Events\ExamAddedEvent;
 use Exception;
 use App\Models\Exam;
 use Illuminate\Http\Request;
@@ -201,6 +202,7 @@ class ExamController extends Controller
         $exam->update([
             'active' => !$exam->active,
         ]);
+        event(new ExamAddedEvent);
         return redirect(url('dashboard/exams'));
     }
 }

@@ -10,23 +10,34 @@ use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
-
-    //index
-
+    /**
+     * Display a listing of the messages.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index (){
         $data['messages']=Message::orderBy('id', 'asc')->paginate(10);
         return view('admin.messages.index')->with($data);
     }
 
-    //show
-
+    /**
+     * Display the specified message.
+     *
+     * @param  \App\Models\Message  $message
+     * @return \Illuminate\Http\Response
+     */
     public function show(Message $message){
         $data['messages']=$message;
         return view('admin.messages.show')->with($data);
     }
 
-    //response
-
+    /**
+     * Respond to a message.
+     *
+     * @param  \App\Models\Message  $message
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function response(Message $message, Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
@@ -35,8 +46,8 @@ class MessageController extends Controller
         $receiverName = $message->name;
         $receiverMail = $message->email;
         Mail::to($receiverMail)->send(
-            new ContactResponsiveMail($receiverName,$request->title,$request->body
-        ));
+            new ContactResponsiveMail($receiverName,$request->title,$request->body)
+        );
         return redirect(url('dashboard/messages'));
     }
 }

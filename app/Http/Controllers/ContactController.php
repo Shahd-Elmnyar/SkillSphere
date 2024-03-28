@@ -9,31 +9,40 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+    // Display the contact form
     public function index(){
-        $data['setting']=Setting::select('email','phone')->first();
+        // Retrieve email and phone settings
+        $data['setting'] = Setting::select('email', 'phone')->first();
+        // Pass the settings data to the contact view
         return view('web.contact.index')->with($data);
     }
 
-    //send
-
+    // Process the contact form submission
     public function send(Request $request){
-        $Validator =Validator::make($request->all(),[
-        'name'=>'required|string|max:255',
-        'email'=>'required|email|max:255',
-        'subject'=>'nullable|max:255|string',
-        'body'=>'required|string  '
+        // Validate the request data
+        $Validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'nullable|max:255|string',
+            'body' => 'required|string'
         ]);
-        if($Validator->fails()){
-            $errors= $Validator->errors();
+        // Check if validation fails
+        if ($Validator->fails()) {
+            // Collect the validation errors
+            $errors = $Validator->errors();
+            // Redirect back to the contact form with errors
             return redirect(url('contact'))->withErrors($errors);
         }
+        // Create a new message record in the database
         Message::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'subject'=>$request->subject,
-            'body'=>$request->body
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'body' => $request->body
         ]);
-        session()->flash('success','your message sent successfully');
+        // Flash a success message to the session
+        session()->flash('success', 'Your message was sent successfully');
+        // Redirect back to the contact form
         return back();
     }
 }

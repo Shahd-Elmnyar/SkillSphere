@@ -10,38 +10,30 @@ use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Skill;
 use Illuminate\Support\Facades\Storage;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class ExamController extends Controller
 {
-
-
-                            //exams
-
+    // Method to list all exams with pagination
     public function index()
     {
         $data['exams'] = Exam::select('id','name','skill_id','img','questions_number','active')->orderBy('id', 'DESC')->paginate(10);
         return view('admin/exams/index')->with($data);
     }
 
-    //show exam
-
+    // Method to show a single exam details
     public function show(Exam $exam)
     {
         $data['exams'] = $exam;
         return view('admin/exams/show')->with($data);
     }
 
-
-    //create exam
-
+    // Method to show the form for creating a new exam
     public function create (){
         $data['skills'] = Skill::select('id', 'name')->get();
         return view('admin.exams.create')->with($data);
     }
 
-    //store exam
-
+    // Method to store a newly created exam in storage
     public function store(Request $request)
     {
         $request->validate([
@@ -76,8 +68,7 @@ class ExamController extends Controller
         return redirect(url("/dashboard/exams/create-questions/{$exam->id}"));
     }
 
-    //delete exam
-
+    // Method to delete an exam
     public function delete(Exam $exam, Request $request)
     {
         try {
@@ -90,16 +81,14 @@ class ExamController extends Controller
         return back();
     }
 
-    //edit exam
-
+    // Method to show the form for editing an exam
     public function edit(Exam $exam){
         $data['skills'] = Skill::select('id', 'name')->get();
         $data['exams'] = $exam;
         return view('admin.exams.edit')->with($data);
     }
 
-    //update exam
-
+    // Method to update an exam in storage
     public function update( Exam $exam ,Request $request,$id)
     {
         $request->validate([
@@ -107,16 +96,10 @@ class ExamController extends Controller
             'name_ar' => 'required|string|max:50',
             'desc_en' => 'required|string',
             'desc_ar' => 'required|string',
-            // 'img'=>'nullable|image|max:2024',
             'skill_id' => 'required|exists:skills,id',
             'difficulty'=>'required|integer|min:1|max:5',
             'duration_mins'=>'required|integer|min:1',
         ]);
-        // $path =$exam->img;
-        // if ($request->hasFile('img')){
-        //     Storage::delete($path);
-        //     $path = Storage::putFile("exams", $request->file('img'));
-        // }
         Exam::findOrFail($id)->update([
             'name' => json_encode([
                 'en' => $request->name_en,
@@ -126,7 +109,6 @@ class ExamController extends Controller
                 'en' => $request->desc_en,
                 'ar' => $request->desc_ar,
             ]),
-            // 'img'=>$path,
             'skill_id' => $request->skill_id,
             'difficulty' => $request->difficulty,
             'duration_mins' => $request->duration_mins,
@@ -135,7 +117,7 @@ class ExamController extends Controller
         return redirect(url("/dashboard/exams/"));
     }
 
-    //toggle active status
+    // Method to toggle the active status of an exam
     public function toggle(Exam $exam)
     {
         $exam->update([
@@ -144,22 +126,14 @@ class ExamController extends Controller
         return back();
     }
 
-
-
-                            //Questions
-
-
-
-    //show questions
-
+    // Method to show questions of an exam
     public function showQuestions(Exam $exam)
     {
         $data['exams'] = $exam;
         return view('admin/exams/showQuestions')->with($data);
     }
 
-    //create Question
-
+    // Method to show the form for creating questions for an exam
     public function createQuestions(Exam $exam){
         if(session('prev')!=="exam/$exam->id" and session('current')!== "exam/$exam->id"){
             return redirect(url('/dashboard/exams'));
@@ -169,8 +143,7 @@ class ExamController extends Controller
         return view('admin/exams/create-questions')->with($data);
     }
 
-    //store Question
-
+    // Method to store newly created questions for an exam
     public function storeQuestions(Exam $exam , Request $request){
         session()->flash('current',"exam/$exam->id");
         $request->validate([

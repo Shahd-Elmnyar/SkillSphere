@@ -7,6 +7,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExamResource;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,10 +25,13 @@ class ExamController extends Controller
         return new ExamResource($exam->load("questions"));
     }
     //start exam
-    // public function start($examId , Request $request){
-
-
-    // }
+    public function start($examId,Request $request)
+    {
+        $request->user()->exams()->attach($examId);
+        return response()->json([
+            'message' =>'you started exam',
+        ]);
+    }
 
     // Submit exam answers
 
@@ -50,28 +54,36 @@ class ExamController extends Controller
                 $rightAnswer = $question->correct_answer; // Get the correct answer
                 if ($userAnswer == $rightAnswer) { // Compare the user's answer with the correct answer
                     $points += 1; // Increment points if the answer is correct
+                    }
                 }
-            }return response()->json($rightAnswer);
-        return response()->json($userAnswer);
         }
 
         $score = ($points / $totalQuestions) * 100; // Calculate the score as a percentage
-        return response()->json($score);
-        // Calculate time taken to complete the exam
-    //     $user = Auth::user(); // Get the authenticated user
-    //     $pivotRow = $user->exams()->where('exam_id', $examId)->active()->first(); // Get the user's exam pivot row
-    //     $startTime = $pivotRow->pivot->created_at; // Get the start time from the pivot row
-    //     $submitTime = Carbon::now(); // Get the current time
-    //     $timeMins = $submitTime->diffInMinutes($startTime); // Calculate the time taken in minutes
-    //     if ($timeMins > $pivotRow->duration_mins ){ // Check if the time taken exceeds the allowed duration
-    //         $score = 0; // Set the score to 0 if the time limit is exceeded
-    //     }
-    //     // Update pivot row with the score and time taken
-    //     $user->exams()->updateExistingPivot($examId, [
-    //         'score' => $score,
-    //         'time_min' =>$timeMins ,
-    //     ]);
-    //     session()->flash('success',"you finished exam successfully with score $score%"); // Flash success message to session
-    //     return redirect(url("exams/show/$examId")); // Redirect to the exam show page
+        //Calculate time taken to complete the exam
+        $user = $request->user(); // Get the authenticated user
+        $pivotRow = $user->exams()->where('exam_id', $examId)->first(); // Get the user's exam pivot row
+
+        if ($pivotRow) {
+            $startTime = $pivotRow->pivot->created_at; // Get the start time from the pivot row
+            $submitTime = Carbon::now(); // Get the current time
+
+            $timeMins = $submitTime->diffInMinutes($startTime); // Calculate the time taken in minutes
+            if ($timeMins > $pivotRow->duration_mins) { // Check if the time taken exceeds the allowed duration
+                $score = 0; // Set the score to 0 if the time limit is exceeded
+            }
+            // Update pivot row with the score and time taken
+            $user->exams()->updateExistingPivot($examId, [
+                'score' => $score,
+                'time_min' => $timeMins,
+            ]);
+        } else {
+            // Handle the case where there is no pivot row found, possibly by returning an error message
+            return response()->json([
+                'message' => 'Exam not started or does not exist.',
+            ], 404);
+        }
+        return response()->json([
+            'message' =>"you submitted the exam successfully , your score is $score %"
+        ]);
     }
 }

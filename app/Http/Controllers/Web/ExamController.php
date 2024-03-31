@@ -95,7 +95,7 @@ class ExamController extends Controller
             'score' => $score,
             'time_min' =>$timeMins ,
         ]);
-        session()->flash('success',"you finished exam successfully with score $score%"); // Flash success message to session
+        session()->flash('success',"you finished exam successfully with score $score %"); // Flash success message to session
         return redirect(url("exams/show/$examId")); // Redirect to the exam show page
     }
 }

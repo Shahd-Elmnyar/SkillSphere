@@ -68,7 +68,7 @@ Route::get('/lang/set/{lang}', [LangController::class, 'set']);
 
 //start exam
 
-Route::post('/exams/start/{id}', [ExamController::class, 'start'])->middleware('auth', 'verified', 'student', 'can-enter-exam');
+Route::post('/exams/start/{id}', [ExamController::class, 'start'])->middleware('auth', 'verified', 'student' );//'can-enter-exam'
 Route::post('/exams/submit/{id}', [ExamController::class, 'submit'])->middleware('auth', 'verified', 'student');
 
 //send message

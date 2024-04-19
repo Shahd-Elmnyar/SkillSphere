@@ -67,7 +67,7 @@
                                         <td>
                                         @if($exam->pivot->status =='closed')
                                             <a href="{{url("dashboard/students/open-exam/$students->id/$exam->id")}}" class="btn btn-sm btn-success">
-                                                <i class="fas fa lock-open"></i>
+                                                <i class="fas fa-lock-open"></i>
                                             </a>
                                         @else
                                             <a href="{{url("dashboard/students/close-exam/$students->id/$exam->id")}}" class="btn btn-sm btn-danger">

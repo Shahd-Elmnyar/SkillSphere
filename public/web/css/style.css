@@ -5,7 +5,7 @@ Author: yaminncco
 Colors:
 	Body 		: #798696
 	Headers 	: #374050
-	Primary 	: #FF6700
+	Primary 	: #252525
 	Grey 		: #EBEBEB
 
 Fonts: Lato & Montserrat
@@ -100,7 +100,7 @@ blockquote:before{
 	position:absolute;
 	left:0;
 	top:0;
-	color: #FF6700;
+	color: #252525;
 	width:40px;
 	height:40px;
 	line-height:40px;
@@ -149,7 +149,6 @@ blockquote:before{
 	right:0;
 	top:0;
 	bottom:0;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#374050), to(#798696));
 	background-image: linear-gradient(to bottom, #374050 0%, #798696 100%);
 	opacity: 0.7;
 }
@@ -159,7 +158,7 @@ blockquote:before{
 	position:relative;
 	display:inline-block;
 	padding:10px 30px;
-	background-color: #FF6700;
+	background-color: #252525;
 	border: 2px solid transparent;
 	border-radius: 40px;
 	color: #FFF;
@@ -185,8 +184,8 @@ blockquote:before{
 
 .main-button:hover , .main-button:focus {
 	background-color:#fff;
-	border: 2px solid #FF6700;
-	color:#FF6700;
+	border: 2px solid #252525;
+	color:#252525;
 }
 
 .main-button.icon-button:hover , .main-button.icon-button:focus {
@@ -227,7 +226,7 @@ textarea {
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="url"]:focus, input[type="tel"]:focus, textarea:focus {
-	border-color:#FF6700;
+	border-color:#252525;
 }
 
 /*------------------------------------*\
@@ -250,7 +249,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	.navbar-brand {
 		margin-left:15px;
 	}
-} 
+}
 
 /*------------------------------------*\
 	Navigation
@@ -290,7 +289,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	content:"";
 	display:block;
 	height:2px;
-	background-color:#FF6700;
+	background-color:#252525;
 	width:100%;
 	-webkit-transform: translateY(5px);
 	    -ms-transform: translateY(5px);
@@ -335,11 +334,11 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 		    -ms-transform: translateX(0%);
 		        transform: translateX(0%);
 	}
-	
+
 	.main-menu {
 		margin:0;
 	}
-	
+
 	.main-menu li a {
 		color: #374050 !important;
 		display: inline-block;
@@ -477,7 +476,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	border-radius: 50%;
 	font-size:30px;
 	border:1px solid #EBEBEB;
-	color:#FF6700;
+	color:#252525;
 }
 
 .feature-content {
@@ -527,7 +526,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .about-video:hover .play-icon {
-	color:#FF6700;
+	color:#252525;
 }
 
 @-webkit-keyframes play-animation {
@@ -559,7 +558,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	right:0;
 	bottom:0;
 	top:0;
-	background-color:#FF6700;
+	background-color:#252525;
 	opacity:0.7;
 }
 
@@ -590,7 +589,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	right:0;
 	bottom:0;
 	top:0;
-	background-color:#FF6700;
+	background-color:#252525;
 	opacity:0;
 	-webkit-transition:0.2s opacity;
 	transition:0.2s opacity;
@@ -647,7 +646,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .course .course-details .course-price.course-premium {
-	color: #FF6700;
+	color: #252525;
 }
 
 #courses .center-btn {
@@ -694,14 +693,14 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .footer-nav li a:hover , .footer-nav li a:focus {
-	color:#FF6700;
+	color:#252525;
 }
 
 .footer-nav li a:after {
 	content:"";
 	display:block;
 	height:2px;
-	background-color:#FF6700;
+	background-color:#252525;
 	width:100%;
 	-webkit-transform: translateY(5px);
 	    -ms-transform: translateY(5px);
@@ -794,7 +793,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .contact-details li i {
-	color: #FF6700;
+	color: #252525;
 	margin-right: 15px;
 	border: 1px solid #EBEBEB;
 	border-radius: 50%;
@@ -836,7 +835,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	top:0;
 	bottom:0;
 	right:0;
-	background-color:#FF6700;
+	background-color:#252525;
 	opacity:0;
 	-webkit-transition:0.2s opacity;
 	transition:0.2s opacity;
@@ -853,7 +852,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .single-blog .blog-meta .blog-meta-author > a {
-	color: #FF6700;
+	color: #252525;
 }
 
 .single-blog .blog-meta .blog-meta-comments {
@@ -900,13 +899,13 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .post-pagination .pages li:hover  , .post-pagination .pages li.active {
-	background-color: #FF6700;
+	background-color: #252525;
 	color:#FFF;
 }
 
 .post-pagination .pages li:hover a {
 	color:#FFF;
-} 
+}
 
 .pagination-back , .pagination-next {
 	display: block;
@@ -922,7 +921,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 
 .pagination-next:hover  , .pagination-back:hover  {
 	color:#FFF;
-	background-color:#FF6700;
+	background-color:#252525;
 }
 
 .pagination-next:after {
@@ -964,7 +963,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .widget.search-widget .input:focus + button {
-	color:#FF6700;
+	color:#252525;
 }
 
 /*-- Category --*/
@@ -985,7 +984,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	width: 4px;
 	height: 4px;
 	border-radius: 50%;
-	background-color: #FF6700;
+	background-color: #252525;
 	margin-right:10px;
 }
 
@@ -1028,7 +1027,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	top:0;
 	bottom:0;
 	right:0;
-	background-color:#FF6700;
+	background-color:#252525;
 	opacity:0;
 	-webkit-transition:0.2s opacity;
 	transition:0.2s opacity;
@@ -1054,8 +1053,8 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .tags-widget .tag:hover {
-	background-color:#FF6700;
-	border-color:#FF6700;
+	background-color:#252525;
+	border-color:#252525;
 	color:#FFF;
 }
 
@@ -1080,7 +1079,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 .blog-post-meta .blog-meta-author > a {
-	color: #FF6700;
+	color: #252525;
 }
 
 /* --- Blog Share --- */
@@ -1210,41 +1209,41 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	#why-us .feature {
 		margin-top:40px;
 	}
-	
+
 	.about-video {
 		margin-top:40px;
 	}
-	
+
 	/*-- Call to action --*/
 	#cta {
 		text-align:center;
 	}
-	
+
 	/*-- Footer --*/
 	.footer-logo {
 		text-align:center;
 	}
-	
+
 	.footer-nav {
 		text-align:center;
 	}
 	.footer-nav li {
 		margin-top: 10px;
 	}
-	
+
 	.footer-social {
 		text-align:center;
 	}
 	.footer-social li {
 		margin-top: 10px;
 	}
-	
+
 	.footer-copyright {
 		text-align:center;
 		line-height:inherit;
 		margin-top:20px;
 	}
-	
+
 	/*-- Contact page --*/
 	.contact-form  {
 		margin-bottom:40px;
@@ -1253,7 +1252,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	.contact-form button {
 		float:none !important;
 	}
-	
+
 	/*-- Blog page --*/
 	#main {
 		margin-bottom:80px;
@@ -1282,18 +1281,18 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	#courses-wrapper [class*='col-xs'] {
 		width:100%;
 	}
-	
+
 	/*-- Blog Comments --*/
 	.blog-comments .media .media {
 		margin-left:0px;
 	}
-	
+
 	/*-- Blog Reply Form --*/
 	.blog-reply-form .input.name-input , .blog-reply-form .input.email-input {
 		width: 100%;
 		float:none;
 	}
-	
+
 	.blog-reply-form .input.email-input {
 		margin-left: 0px;
 	}
@@ -1301,7 +1300,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 
 /*------------------------------------*\
 	Preloader
-\*------------------------------------*/ 
+\*------------------------------------*/
 #preloader {
 	position:fixed;
 	left:0;
@@ -1327,7 +1326,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	width:40px;
 	height:40px;
 	border: 1px solid #EBEBEB;
-    border-top: 1px solid #FF6700;
+    border-top: 1px solid #252525;
     border-radius: 50%;
 	-webkit-animation: 1s preloader linear infinite;
 	        animation: 1s preloader linear infinite;

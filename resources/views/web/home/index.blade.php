@@ -19,7 +19,7 @@
                             <div class="col-md-8">
                                 <h1 class="white-text">@lang('web.heroTitle')</h1>
                                 <p class="lead white-text">@lang('web.heroDesc')</p>
-                                <a class="main-button icon-button" href="#">@lang('web.getStartedBtn')</a>
+                                <a class="main-button icon-button" href="#courses">@lang('web.getStartedBtn')</a>
                             </div>
                         </div>
                     </div>
@@ -48,144 +48,30 @@
 
                         <!-- row -->
                         <div class="row">
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam1.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">Beginner to Pro in Excel: Financial Modeling and Valuation</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Design</span>
+                        @foreach($PopularExams as $exam)
+                                <div class="col-md-3">
+                                    <div class="single-blog">
+                                        <div class="blog-img">
+                                            <a href="{{url("exams/show/{$exam->id}")}}">
+                                                <img src="{{ asset("uploads/$exam->img") }}"  alt="">
+                                            </a>
+                                        </div>
+                                        <h4><a href="{{url("exams/show/{$exam->id}")}}">{{ $exam->name() }}</a></h4>
+                                        <div class="blog-meta">
+                                            <span>{{Carbon\Carbon::parse($exam->created_at)->format("d M, Y")}}</span>
+                                            <div class="pull-right">
+                                                <span class="blog-meta-comments"><a href="#"><i class="fa fa-users"></i> {{$exam->users()->count()}}</a></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /single course -->
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam2.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">Introduction to CSS </a>
-                                    <div class="course-details">
-                                        <span class="course-category">Programming</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam3.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">The Ultimate Drawing Course | From Beginner To Advanced</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Drawing</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam4.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">The Complete Web Development Course</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Web Development</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
+                        @endforeach
                         </div>
-                        <!-- /row -->
-
-                        <!-- row -->
-                        <div class="row">
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam5.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">PHP Tips, Tricks, and Techniques</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Web Development</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam6.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">All You Need To Know About Programming</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Programming</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam7.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">How to Get Started in Photography</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Photography</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
-
-                            <!-- single course -->
-                            <div class="col-md-3 col-sm-6 col-xs-6">
-                                <div class="course">
-                                    <a href="#" class="course-img">
-                                        <img src="{{asset('uploads/exams/exam8.jpg')}}" alt="">
-                                        <i class="course-link-icon fa fa-link"></i>
-                                    </a>
-                                    <a class="course-title" href="#">Typography From A to Z</a>
-                                    <div class="course-details">
-                                        <span class="course-category">Typography</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /single course -->
-
-                        </div>
-                        <!-- /row -->
-
+                        <!--/row -->
                     </div>
                     <!-- /courses -->
 
-                    <div class="row">
-                        <div class="center-btn">
-                            <a class="main-button icon-button" href="#">More Courses</a>
-                        </div>
-                    </div>
+
 
                 </div>
                 <!-- container -->
@@ -213,7 +99,7 @@
                         <div class="col-md-8 col-md-offset-2 text-center">
                             <h2 class="white-text">@lang('web.contact')</h2>
                             <p class="lead white-text">@lang('web.contactDesc')</p>
-                            <a class="main-button icon-button" href="contact.html">@lang('web.contactBtn')</a>
+                            <a class="main-button icon-button"  href="{{url('contact')}}" >@lang('web.contactBtn')</a>
                         </div>
 
                     </div>

@@ -19,7 +19,7 @@ class ExamController extends Controller
         $data['exam'] = Exam::findOrFail($id); // Find the exam or fail
         $user = Auth::user(); // Get the authenticated user
         $data['canEnterExam']=true; // Assume the user can enter the exam by default
-        if ($user!==null){ // Check if user is not null
+        if ($user!==null){ // Check if user is not null 
             $pivotRow=$user->exams()->where('exam_id',$id)->active()->first(); // Get the user's exam pivot row
             if ($pivotRow !== null and $pivotRow->pivot->status =='closed'){ // Check if the exam status is closed
                 $data['canEnterExam']=false; // Set canEnterExam to false if exam is closed
@@ -43,6 +43,7 @@ class ExamController extends Controller
     // Start an exam
     public function start($examId,Request $request)
     {
+
         $user = Auth::user(); // Get the authenticated user
         if(!$user->exams->contains($examId)){ // Check if the user has not started the exam
             $user->exams()->attach($examId); // Attach the exam to the user
@@ -79,6 +80,7 @@ class ExamController extends Controller
                 }
             }
         }
+
         $score = ($points / $totalQuestions) * 100; // Calculate the score as a percentage
 
         // Calculate time taken to complete the exam

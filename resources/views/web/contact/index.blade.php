@@ -7,7 +7,7 @@
 		<div class="hero-area section">
 
 			<!-- Backgound Image -->
-            <div class="bg-image bg-parallax overlay" style="background-image:url('web/img/home-background.jpg')"></div>
+            <div class="bg-image bg-parallax overlay" style="background-image:url('web/img/cta.jpg')"></div>
 
 			<!-- /Backgound Image -->
 

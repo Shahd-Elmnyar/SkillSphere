@@ -7,7 +7,7 @@ return[
     'sign in'=>'تسجيل دخول',
     'sign up'=>'تسجيل حساب',
 
-    'heroTitle'=>'SkillsHub تقييم مجاني للمهارات عبر الإنترنت',
+    'heroTitle'=>'SKILLSPHERE تقييم مجاني للمهارات عبر الإنترنت',
     'heroDesc'=>'انضم إلينا واختبر مهاراتك الآن!',
     'popularExamTitle'=>'الامتحانات المشهورة',
     'popularExamDesc'=>'انضم إلينا واختبر مهاراتك الآن!',

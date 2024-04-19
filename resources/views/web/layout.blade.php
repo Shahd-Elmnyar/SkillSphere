@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title>SkillsHub - @yield('title')</title>
+        <title>SKILLSPHERE - @yield('title')</title>
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet">
@@ -50,7 +50,7 @@
                     <!-- Logo -->
                     <div class="navbar-brand">
                         <a class="logo" href="index.html">
-                            <img src="{{asset('web/img/logo.png')}}" alt="logo">
+                            <img src="{{asset('web/img/logo.png.png')}}" alt="logo">
                         </a>
                     </div>
                     <!-- /Logo -->
@@ -91,7 +91,7 @@
                     <!-- copyright -->
                     <div class="col-md-8 col-md-pull-4">
                         <div class="footer-copyright">
-                            <span>&copy; Copyright 2021. All Rights Reserved. | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">SkillsHub</a></span>
+                            <span>&copy; Copyright 2021. All Rights Reserved. | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">SKILLSPHERE</a></span>
                         </div>
                     </div>
                     <!-- /copyright -->

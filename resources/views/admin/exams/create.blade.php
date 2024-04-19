@@ -66,10 +66,11 @@
                                     <div class="form-group">
                                         <label>Image</label>
                                         <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="img">
-                                                <label class="custom-file-label">choose file</label>
-                                            </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile" name="img">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                        </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -110,4 +111,25 @@
 </div>
 <!-- /.content-wrapper -->
 
+@endsection
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get the file input element
+    const fileInput = document.querySelector('.custom-file-input');
+
+    // Add event listener for change event
+    fileInput.addEventListener('change', function() {
+        // Get the selected file name
+        const fileName = this.files[0].name;
+
+        // Get the label element
+        const label = this.nextElementSibling;
+
+        // Update the label text with the selected file name
+        label.textContent = fileName;
+    });
+});
+
+    </script>
 @endsection

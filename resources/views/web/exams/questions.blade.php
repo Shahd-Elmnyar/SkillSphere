@@ -10,8 +10,9 @@ Questions - {{$exam->name()}}
 <!-- Hero-area -->
 <div class="hero-area section">
     <!-- Background Image -->
-    <div class="bg-image bg-parallax overlay" style="background-image:url({{ asset('uploads/'. $exam->img) }}) ">
-    </div>
+    <!-- Simplified Example -->
+<div class="bg-image bg-parallax overlay" style="background-image:url('/web/img/home-background.jpg')"></div>
+
     <!-- /Background Image -->
 
     <div class="container">

@@ -5,9 +5,9 @@ skills - {{$skill->name()}}
 @section('content')
         <!-- Hero-area -->
             <div class="hero-area section">
-
                 <!-- Backgound Image -->
-                <div class="bg-image bg-parallax overlay" style="background-image:url(./img/page-background.jpg)"></div>
+                <!-- Simplified Example -->
+                    <div class="bg-image bg-parallax overlay" style="background-image:url('/web/img/skill.jpg')"></div>
                 <!-- /Backgound Image -->
 
                 <div class="container">
@@ -25,7 +25,6 @@ skills - {{$skill->name()}}
                                 <li>{{$skill->name()}}</li>
                             </ul>
                             <h1 class="white-text">{{$skill->name()}}</h1>
-
                         </div>
                     </div>
                 </div>

@@ -7,8 +7,8 @@ exams - {{$exam->name()}}
 <div class="hero-area section">
 
     <!-- Backgound Image -->
-    <div class="bg-image bg-parallax overlay" style="background-image:url({{ asset('uploads/'. $exam->img) }})"></div>
-    <!-- /Backgound Image -->
+    <!-- Simplified Example -->
+    <div class="bg-image bg-parallax overlay" style="background-image:url('/web/img/exam.jpg')"></div>
 
     <div class="container">
         <div class="row">
@@ -53,12 +53,12 @@ exams - {{$exam->name()}}
 
                 <div>
                     @if($canEnterExam )
-                        <form action="{{url("exams/start/{$exam->id}")}}" method="post">
+                        <form action="{{url("exams/start/{$exam->id}")}}" method="POST">
                             @csrf
                             <button type="submit"  class="main-button icon-button pull-left">{{__('web.StartExamBtn')}}</button>
                         </form>
                     @endif
-                </div> 
+                </div>
             </div>
             <!-- /main blog -->
 

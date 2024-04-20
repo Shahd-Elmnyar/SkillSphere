@@ -137,7 +137,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="custom-select form-control"name= "categorie_id">
+                                    <select class="custom-select form-control" name="category_id">
                                         @foreach($categories as $category)
                                         <option value="{{$category->id }}" >{{$category->name('en')}}</option>
                                         @endforeach
@@ -149,10 +149,10 @@
                             <div class="form-group">
                                 <label>Image</label>
                                 <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="img">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
+                                <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile" name="img">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -204,25 +204,20 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="custom-select form-control">
+                                    <select class="custom-select form-control" name="categorie_id">
                                         @foreach($categories as $category)
-                                        <option value="{{$category->id}}" name= "category_id">{{$category->name('en')}}</option>
+                                            <option value="{{$category->id}}">{{$category->name('en')}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
 
+
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Image</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="img">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
 
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -250,8 +245,27 @@
         $('#edit-form-id').val(id)
         $('#edit-form-name-en').val(nameEn)
         $('#edit-form-name-ar').val(nameAr)
-        $('#edit-form-categorie-id').val(categoryId)
-
+        $('#edit-form-cat-id').val(categoryId)
     })
+
+
+</script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Get the file input element
+    const fileInput = document.querySelector('.custom-file-input');
+
+    // Add event listener for change event
+    fileInput.addEventListener('change', function() {
+        // Get the selected file name
+        const fileName = this.files[0].name;
+
+        // Get the label element
+        const label = this.nextElementSibling;
+
+        // Update the label text with the selected file name
+        label.textContent = fileName;
+    });
+});
 </script>
 @endsection

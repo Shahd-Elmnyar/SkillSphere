@@ -47,13 +47,13 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" name="password"></input>
+                                    <input type="password" class="form-control" name="password"></input>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input type="text" class="form-control" name="password_confirmation"></input>
+                                    <input type="password" class="form-control" name="password_confirmation"></input>
                                 </div>
                             </div>
                             </div>

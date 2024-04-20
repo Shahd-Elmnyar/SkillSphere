@@ -11,10 +11,16 @@
                     <h4 class="m-0 text-secondary">your role is {{$adminRole}}</h4>
                     <p class="mt-3">
                         this dashboard for help you
-                        <br> -add, edit, delete, activate and deactivate categories, skills, and exams
-                        <br> -open and close exams for each student
-                        <br> -read messages and respond to them
+                        <br><br> -add, edit, delete, activate and deactivate categories, skills, and exams
+                        <br><br> -open and close exams for each student
+                        <br><br> -read messages and respond to them
                     </p>
+                    @if(Auth::user()->role->name == "superadmin")
+                        <p class="mt-3">
+                            -add admins and superadmins
+                        </p>
+                    @endif
+
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Events\ExamAddedEvent;
+use Log;
 use Exception;
 use App\Models\Exam;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Question;
 use App\Models\Skill;
+use App\Models\Question;
+use Illuminate\Http\Request;
+use App\Events\ExamAddedEvent;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class ExamController extends Controller
@@ -48,15 +49,11 @@ class ExamController extends Controller
             'difficulty' => 'required|integer|min:1|max:5',
             'duration_mins' => 'required|integer|min:1',
         ]);
-        // $path = Storage::putFile('exams',$request->file('img'));
+
         // Retrieve the file contents from the request
         $fileContents = $request->file('img');
-        // $fileContents = $request->file('img')->storeAs('exam', time() . '.jpg');
-
         // Generate a unique filename by adding the current timestamp to the original filename
         $fileName = time() . '_' . $fileContents->getClientOriginalName();
-
-
         // Construct the full file path including the directory
         $filePath = 'exams'; // Adjusted path without the duplicate 'uploads'
 
@@ -161,38 +158,44 @@ class ExamController extends Controller
 
     // Method to store newly created questions for an exam
     public function storeQuestions(Exam $exam, Request $request)
-    {
-        session()->flash('current', "exam/$exam->id");
+{
+    try {
         $request->validate([
             'titles' => 'required|array',
-            'title.*' => 'required|string|max:500',
+            'titles.*' => 'required|string|max:500',
             'right_answer' => 'required|array',
             'right_answer.*' => 'required|in:1,2,3,4',
             'option_1s.*' => 'required|string|max:255',
-            'option_1s' => 'required|array',
-            'option_2s' => 'required|array',
             'option_2s.*' => 'required|string|max:255',
-            'option_3s' => 'required|array',
             'option_3s.*' => 'required|string|max:255',
-            'option_4s' => 'required|array',
             'option_4s.*' => 'required|string|max:255',
-            'titles' => 'required|array',
         ]);
-        for ($i = 0; $i < $exam->question_no; $i++) {
+
+        foreach ($request->titles as $index => $title) {
             Question::create([
                 'exam_id' => $exam->id,
-                'title' => $exam->titles[$i],
-                'option_1' => $exam->option_1s[$i],
-                'option_2' => $exam->option_2s[$i],
-                'option_3' => $exam->option_3s[$i],
-                'option_4' => $exam->option_4s[$i],
-                'correct_answer' => $exam->right_answer[$i],
+                'title' => $title,
+                'option_1' => $request->option_1s[$index],
+                'option_2' => $request->option_2s[$index],
+                'option_3' => $request->option_3s[$index],
+                'option_4' => $request->option_4s[$index],
+                'correct_answer' => $request->right_answer[$index],
             ]);
         }
+
         $exam->update([
             'active' => !$exam->active,
         ]);
+
         event(new ExamAddedEvent);
+
         return redirect(url('dashboard/exams'));
+    } catch (\Exception $e) {
+        // Log the exception
+        Log::error($e->getMessage());
+        // Handle the exception as needed
+        return back()->withInput()->withErrors(['error' => 'An error occurred while storing the questions.']);
     }
+}
+
 }

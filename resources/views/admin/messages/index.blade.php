@@ -60,7 +60,7 @@
                                         <td>{{$message->name}}</td>
                                         <td>{{$message->email}}</td>
                                         <!-- show subject from database if exist if it null show ... -->
-                                        <td>{{$message->Subject ?? "..."}}</td>
+                                        <td>{{$message->subject ?? "..."}}</td>
                                         <td>
                                             <a href="{{url("dashboard/messages/show/$message->id")}}" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i>

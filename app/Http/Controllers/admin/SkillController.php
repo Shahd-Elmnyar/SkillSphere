@@ -7,6 +7,7 @@ use App\Models\Skill;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 // SkillController handles all operations related to skills management in the admin panel
 class SkillController extends Controller
@@ -22,6 +23,7 @@ class SkillController extends Controller
     // Store a newly created skill in the database.
     public function store(Request $request)
     {
+
         // Validate the incoming request data
         $request->validate([
             'name_en' => 'required|string|max:50',
@@ -29,13 +31,23 @@ class SkillController extends Controller
             'img'=>'required|image|max:2024', // Image must not exceed 2MB
             'category_id' => 'required|exists:categories,id', // Ensure the category exists
         ]);
+        // dd($request);
+        // Retrieve the file contents from the request
+        $fileContents = $request->file('img');
+        // Generate a unique filename by adding the current timestamp to the original filename
+        $fileName = time() . '_' . $fileContents->getClientOriginalName();
+        // Construct the full file path including the directory
+        $filePath = 'skills'; // Adjusted path without the duplicate 'uploads'
+        // Store the file in the specified path
+        $path = Storage::disk('uploads')->putFileAs($filePath, $fileContents, $fileName);
         // Create the skill with the validated data
         Skill::create([
             'name' => json_encode([
                 'en' => $request->name_en,
                 'ar' => $request->name_ar,
-                'categorie_id' => $request->categorie_id,
             ]),
+            'img'=>$path,
+            'categorie_id' => $request->category_id,
         ]);
         session()->flash('msg', 'row added successfully'); // Flash a success message to the session
         return back(); // Redirect back to the previous page

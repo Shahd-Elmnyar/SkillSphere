@@ -40,7 +40,7 @@
                                             <th>Title</th>
                                             <th>Options</th>
                                             <th>Right Answer</th>
-                                            <th>Actions</th>
+                                            <th>Exam</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,22 +56,7 @@
                                             <td>
                                                 {{$question->correct_answer}}
                                             </td>
-                                            <td>{{$exams->skill->name('en')}}</td>
-
-                                            <td>
-                                                <a href="{{url("dashboard/exams/show/$exams->id")}}" class="btn btn-sm btn-primary ">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{url("dashboard/exams/show/$exams->id/questions")}}" class="btn btn-sm btn-success ">
-                                                    <i class="fas fa-question"></i>
-                                                </a>
-                                                <a href="{{url("dashboard/exams/edit/$exams->id")}}" class="btn btn-sm btn-info ">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="{{url("dashboard/exams/delete/$exams->id")}}" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
+                                            <td>{{$exams->name('en')}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
